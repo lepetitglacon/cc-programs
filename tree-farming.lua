@@ -30,6 +30,7 @@ while true do
         turtle.back()
         turtle.down()
 
+        isPlanted = false
     end
 
 end
