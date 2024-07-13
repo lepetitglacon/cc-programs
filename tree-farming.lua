@@ -1,9 +1,35 @@
 function plant()
-    local hasBlock, data = turtle.inspect()
-    print(hasBlock, textutils.serialize(data))
+    place()
+    isPlanted = true
 end
+
+local isPlanted = false
 
 while true do
     sleep(1)
-    plant()
+
+    if (not isPlanted) then
+        plant()
+        turtle.up()
+    end
+
+    local hasBlock, blockData = turtle.inspect()
+    if (hasBlock) then
+        turtle.dig()
+        turtle.forward()
+        turtle.digDown()
+        turtle.digUp()
+        turtle.up()
+
+        local hasBlockUp, blockDataUp = turtle.inspectUp()
+        if (hasBlockUp) then
+            turtle.digUp()
+            turtle.down()
+        end
+
+        turtle.back()
+        turtle.down()
+
+    end
+
 end
